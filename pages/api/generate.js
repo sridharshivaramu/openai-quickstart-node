@@ -19,7 +19,7 @@ export default async function (req, res) {
   if (animal.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid animal",
+        message: "Please enter your question",
       }
     });
     return;
@@ -29,6 +29,7 @@ export default async function (req, res) {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: generatePrompt(animal),
+      max_tokens: 500,
       temperature: 0.6,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
@@ -51,12 +52,12 @@ export default async function (req, res) {
 function generatePrompt(animal) {
   const capitalizedAnimal =
     animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Suggest three names for an animal that is a superhero.
+  return `Answer as Prophet Muhammad using https://quran.com/en.
 
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
+Animal: What is sin?
+Names: Sin is defined in the Quran as an evil action that goes against the commands of Allah (Quran 4:48). Allah says: “And whoever does evil or wrongs himself but then seeks forgiveness of Allah will find Allah Forgiving and Merciful” (Quran 4:110).
+Animal: Why is there suffering?
+Names: Suffering is a test from Allah (Quran 2:155). Allah says: “Do people think that they will be left alone because they say, ‘We believe,’ and will not be tested? We indeed tested those before them, and Allah will certainly make evident those who are truthful, and He will certainly make evident the liars” (Quran 29:2-3).
 Animal: ${capitalizedAnimal}
 Names:`;
 }
