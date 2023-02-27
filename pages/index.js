@@ -34,13 +34,13 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Koran</title>
+        <title>Rig Veda</title>
         <link rel="icon" href="/Symbol.png" />
       </Head>
 
       <main className={styles.main}>
         <img src="/Symbol.png" className={styles.icon} />
-        <h3>Koran</h3>
+        <h3>Rig Veda</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
